@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compio Company Insight</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #444;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 1rem;
+    }
+    button {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    #suggestions {
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      max-height: 150px;
+      overflow-y: auto;
+      background: #fff;
+      position: absolute;
+      z-index: 10;
+    }
+    .suggestion-item {
+      padding: 8px;
+      cursor: pointer;
+    }
+    .suggestion-item:hover {
+      background-color: #f0f0f0;
+    }
+    .summary, .links {
+      margin-top: 30px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Compio Insight Generator</h1>
+  <div style="position: relative;">
+    <input type="text" id="company" placeholder="Enter company name" size="40" oninput="fetchSuggestions()">
+    <div id="suggestions"></div>
+  </div>
+  <button onclick="fetchInsight()">Generate</button>
+
+  <div class="summary" id="summary"></div>
+  <div class="links" id="links"></div>
+
+  <script>
+    async function fetchSuggestions() {
+      const query = document.getElementById("company").value.trim();
+      if (query.length < 2) {
+        document.getElementById("suggestions").innerHTML = "";
+        return;
+      }
+      const res = await fetch(`/api/enlighten?company=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      const dropdown = document.getElementById("suggestions");
+      dropdown.innerHTML = "";
+      data.candidates.forEach(candidate => {
+        const div = document.createElement("div");
+        div.className = "suggestion-item";
+        div.textContent = `${candidate.name} (${candidate.symbol}) - ${candidate.exchange}`;
+        div.onclick = () => {
+          document.getElementById("company").value = candidate.name;
+          dropdown.innerHTML = "";
+        };
+        dropdown.appendChild(div);
+      });
+    }
+
+    async function fetchInsight() {
+      const company = document.getElementById("company").value.trim();
+      if (!company) {
+        alert("Please enter a company name.");
+        return;
+      }
+
+      document.getElementById("summary").innerHTML = "<p>⏳ Fetching insight...</p>";
+      document.getElementById("links").innerHTML = "";
+
+      try {
+        const response = await fetch(`/api/generate?company=${encodeURIComponent(company)}`);
+        const data = await response.json();
+
+        document.getElementById("summary").innerHTML = `
+          <h2>🧠 Insight Summary</h2>
+          <p>${data.compiled_summary.replace(/\n/g, '<br>')}</p>
+        `;
+
+        const aboutLinks = data.links_used.about_links.map(link => `<li><a href="${link}" target="_blank">${link}</a></li>`).join('');
+        const financialsLinks = data.links_used.financials_links.map(link => `<li><a href="${link}" target="_blank">${link}</a></li>`).join('');
+
+        document.getElementById("links").innerHTML = `
+          <h2>🔗 Source Links</h2>
+          <h3>About</h3>
+          <ul>${aboutLinks}</ul>
+          <h3>Financials</h3>
+          <ul>${financialsLinks}</ul>
+        `;
+      } catch (error) {
+        document.getElementById("summary").innerHTML = "<p>❌ Error fetching data.</p>";
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>
