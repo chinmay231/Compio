@@ -130,4 +130,4 @@ Created by Chinmay Kapoor, with as a practice to enable AWS S3, APIs for data in
 ---
 
 ## 📬 Contact
-[LinkedIn]((https://www.linkedin.com/in/chinmay-kapoor-b67344200/)) | [Email](mailto:chinmaykapoor2301@gmail.com)
+[LinkedIn](https://www.linkedin.com/in/chinmay-kapoor-b67344200/) | [Email](mailto:chinmaykapoor2301@gmail.com)
