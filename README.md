@@ -48,7 +48,7 @@ compio/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/chinmay231/compio
+git clone https://github.com/chinmay231/Compio
 cd compio
 ```
 
