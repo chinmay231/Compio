@@ -125,7 +125,7 @@ Feel free to fork and contribute. PRs welcome!
 ---
 
 ## 🧠 Credits
-Created by Chinmay Kapoor, with as a practice to enable AWS S3, APIs for data ingestion and multi-source data compilation using Gemini API.
+Created by Chinmay Kapoor, as a curiosity and practice project, to enable AWS S3, APIs for data ingestion and multi-source data compilation using Gemini API.
 
 ---
 
