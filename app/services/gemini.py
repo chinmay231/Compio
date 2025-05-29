@@ -22,7 +22,7 @@ PART 3 – RECENT NEWS ARTICLES:
 Write a professional, information-rich summary with:
 
 1. Introduction paragraph
-2. In-depth 'Products & Services' section (3–5 sentences)
+2. In-depth 'Products & Services' section (3-5 sentences)
 3. Detailed 'Financial Highlights' section with figures if possible
 4. 'Recent Funding or Investment Activity' with named investors, rounds, and years
 5. Public Trading status if known and recent news. 
