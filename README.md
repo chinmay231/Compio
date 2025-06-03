@@ -102,6 +102,7 @@ Returns top matching company names from Yahoo Finance autocomplete.
 
 ## 📄 requirements.txt
 ```
+langchain
 fastapi
 uvicorn[standard]
 python-docx
