@@ -1,3 +1,6 @@
+P.S.
+Initially developed as below, but currently used as a benchmarking pipeline to test Hybrid Hosting of Compute,Storage and Inference at Swiss Vault. Below is the information about how it was initially developed as a educational project. 
+
 # 📊 Compio: Company Insight Generator
 
 Compio is a lightweight web-based tool that generates summarized company profiles, compiles financial and funding data, fetches relevant recent news, and exports everything into structured `.docx` files. The project is designed using AWS S3, BS4 web-scraping, FastAPI, Google Gemini, and Yahoo Finance scraping to give a complete view of a business from real-time internet sources.
